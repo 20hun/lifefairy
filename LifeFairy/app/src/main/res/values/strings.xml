@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LifeFairy</string>
+    <string name="kakao_app_key">dd5f1e1a09e6ef1f2b205938cba77ebb</string>
 </resources>
