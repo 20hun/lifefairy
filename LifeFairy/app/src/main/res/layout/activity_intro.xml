@@ -8,11 +8,31 @@
     tools:context=".auth.IntroActivity">
 
     <ImageButton
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="fitCenter"
         android:id="@+id/kakao_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/kakao_login_medium_wide"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageButton
+        android:id="@+id/google_login_button"
+        android:scaleType="fitCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/google_login"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageButton
+        android:id="@+id/facebook_login_button"
+        android:scaleType="fitCenter"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/facebook_login"
         android:background="@android:color/transparent"
         />
 

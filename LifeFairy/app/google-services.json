@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "353438213098",
+    "project_id": "lifefairy-8e04e",
+    "storage_bucket": "lifefairy-8e04e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353438213098:android:60e9f0a3b9094a86c1c893",
+        "android_client_info": {
+          "package_name": "com.danny.lifefairy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353438213098-8t5g2f9vgqfkda3fg1ccrvpkvb3utub0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.danny.lifefairy",
+            "certificate_hash": "fcbb68013a361e49085b90b944020bcee97b338a"
+          }
+        },
+        {
+          "client_id": "353438213098-bsgj2bf2t3vln0hrulj3d783qouk3994.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9U-EiJy7oYTwaQZbaMAG5GX0zd2U2jwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353438213098-bsgj2bf2t3vln0hrulj3d783qouk3994.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
