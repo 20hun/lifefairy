@@ -9,28 +9,61 @@
 
     <ImageView
         android:id="@+id/backBtn"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_width="match_parent"
+        android:src="@drawable/left_click_back"
+        android:layout_width="30dp"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:text="이메일 주소를 입력해주세요"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
     <EditText
+        android:id="@+id/emailArea"
         android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"/>
 
     <ImageView
-        android:src="@drawable/ic_launcher_background"
-        android:layout_width="match_parent"
+        android:id="@+id/nextStepAuthEmailBtn"
+        android:src="@drawable/right_click_bg_black"
+        android:layout_width="70dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="60dp"
         android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/passwordArea"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <EditText
+        android:id="@+id/nameArea"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <EditText
+        android:id="@+id/emojiArea"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
 
 </LinearLayout>

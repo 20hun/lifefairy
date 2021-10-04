@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.emailArea)
             val password = findViewById<EditText>(R.id.passwordArea)
             val name = findViewById<EditText>(R.id.nameArea)
+            val emoji = findViewById<EditText>(R.id.emojiArea)
 
-            service.login(email.text.toString(), password.text.toString(), name.text.toString()).enqueue(object :Callback<RegistForm2>{
+            service.login(email.text.toString(), password.text.toString(), name.text.toString(), emoji.text.toString()).enqueue(object :Callback<RegistForm2>{
                 override fun onResponse(call: Call<RegistForm2>, response: Response<RegistForm2>) {
                     val result = response.body()
                     Log.d("로그인", "${result}")
@@ -56,5 +57,5 @@ class MainActivity : AppCompatActivity() {
 interface SignService {
     @FormUrlEncoded
     @POST("api/users/register")
-    fun login(@Field("email") email:String, @Field("password") password:String, @Field("name") name:String) : Call<RegistForm2>
+    fun login(@Field("email") email:String, @Field("password") password:String, @Field("name") name:String, @Field("emoji") emoji:String) : Call<RegistForm2>
 }

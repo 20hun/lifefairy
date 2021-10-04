@@ -27,15 +27,6 @@
         android:background="@android:color/transparent"
         />
 
-    <ImageButton
-        android:id="@+id/facebook_login_button"
-        android:scaleType="fitCenter"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:src="@drawable/facebook_login"
-        android:background="@android:color/transparent"
-        />
-
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
