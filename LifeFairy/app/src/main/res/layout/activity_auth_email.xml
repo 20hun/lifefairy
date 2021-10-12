@@ -1,9 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".auth.AuthEmailActivity">
+    tools:context=".auth.EmailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:src="@drawable/left_click_back"
+        android:layout_width="30dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="이메일 주소를 입력해주세요"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/one_btn"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <ImageView
+        android:id="@+id/test_btn"
+        android:src="@drawable/right_click_bg_black"
+        android:layout_width="70dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="60dp"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/two_btn"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <EditText
+        android:id="@+id/three_btn"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <EditText
+        android:id="@+id/four_btn"
+        android:hint="example@lifefairy.com"
+        android:padding="10dp"
+        android:background="@drawable/border_black"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+</LinearLayout>

@@ -27,6 +27,11 @@
         android:background="@android:color/transparent"
         />
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -42,7 +47,7 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/emailLoginBtn"
+            android:id="@+id/email_login_btn"
             android:layout_width="170dp"
             android:layout_height="30dp"
             android:text="이메일로 계속하기"

@@ -4,54 +4,61 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import com.danny.lifefairy.R
-import com.danny.lifefairy.form.EmailCheckForm
-import com.danny.lifefairy.form.RegistForm
-import kotlinx.android.synthetic.main.activity_email.*
+import com.danny.lifefairy.databinding.ActivityEmailBinding
+import com.danny.lifefairy.form.PostModel
+import com.danny.lifefairy.form.PostResult
+import com.danny.lifefairy.service.SignService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
 
 class EmailActivity : AppCompatActivity() {
+
+    private var emailBinding : ActivityEmailBinding? = null
+    private val binding get() = emailBinding!!
+
+    val api = SignService.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_email)
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://133.186.251.93/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(SignService::class.java)
+        emailBinding = ActivityEmailBinding.inflate(layoutInflater)
 
-        nextStepAuthEmailBtn.setOnClickListener {
-            val email = findViewById<EditText>(R.id.emailArea)
-            val password = findViewById<EditText>(R.id.passwordArea)
-            val name = findViewById<EditText>(R.id.nameArea)
-            val emoji = findViewById<EditText>(R.id.emojiArea)
+        setContentView(binding.root)
 
-            service.signAccount(
-                email.text.toString(),
-                password.text.toString(),
-                name.text.toString(),
-                emoji.text.toString()
-            ).enqueue(object : Callback<RegistForm> {
-                override fun onResponse(call: Call<RegistForm>, response: Response<RegistForm>) {
-                    val result = response.body()
-                    Log.d("로그인", "${result}")
-                }
+        binding.nextStepAuthEmailBtn.setOnClickListener {
+//            api.get_users().enqueue(object : Callback<HTTP_GET_Model>{
+//                override fun onResponse(call: Call<HTTP_GET_Model>, response: Response<HTTP_GET_Model>) {
+//                    val result = response.body()
+//                    Log.d("로그인", result.toString())
+//                }
+//
+//                override fun onFailure(call: Call<HTTP_GET_Model>, t: Throwable) {
+//                    Log.e("로그인", t.message.toString())
+//                }
+//            })
+//            val data = PostModel(
+//                ,
+//                password.text.toString(),
+//                name.text.toString(),
+//                emoji.text.toString()
+//            )
 
-                override fun onFailure(call: Call<RegistForm>, t: Throwable) {
-                    Log.e("로그인", "${t.localizedMessage}")
-                }
-            })
+//            api.post_users(data).enqueue(object : Callback<PostResult> {
+//                override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
+//                    Log.d("log222", response.toString())
+//                    Log.d("log222", response.body().toString())
+//                }
+//
+//                override fun onFailure(call: Call<PostResult>, t: Throwable) {
+//                    // 실패
+//                    Log.d("log222", t.message.toString())
+//                    Log.d("log222", "fail")
+//                }
+//            })
+
+            val intent = Intent(this, AuthEmailActivity::class.java)
+            startActivity(intent)
         }
 
 //        val retrofit = Retrofit.Builder()
@@ -60,9 +67,9 @@ class EmailActivity : AppCompatActivity() {
 //            .build()
 //        val service = retrofit.create(SignService::class.java)
 //
-//        backBtn.setOnClickListener {
-//            onBackPressed()
-//        }
+        binding.backBtn.setOnClickListener {
+            onBackPressed()
+        }
 //
 //        nextStepAuthEmailBtn.setOnClickListener {
 ////            val email = findViewById<EditText>(R.id.emailArea)
@@ -79,8 +86,7 @@ class EmailActivity : AppCompatActivity() {
 ////            })
 ////
 ////
-////            val intent = Intent(this, AuthEmailActivity::class.java)
-////            startActivity(intent)
+
 //
 //            val email = findViewById<EditText>(R.id.emailArea)
 //            val password = findViewById<EditText>(R.id.passwordArea)
@@ -97,14 +103,4 @@ class EmailActivity : AppCompatActivity() {
 //                }
 //            })
     }
-}
-
-interface SignService {
-    @FormUrlEncoded
-    @GET("api/users/email-check")
-    fun emailCheck(@Field("email") email:String) : Call<EmailCheckForm>
-
-    @FormUrlEncoded
-    @POST("api/users/register")
-    fun signAccount(@Field("email") email:String, @Field("password") password:String, @Field("name") name:String, @Field("emoji") emoji:String) : Call<RegistForm>
 }
