@@ -14,6 +14,9 @@
         android:theme="@style/Theme.LifeFairy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".auth.PasswordaActivity"
+            android:exported="true" />
+        <activity
             android:name=".auth.PasswordActivity"
             android:exported="true" />
         <activity

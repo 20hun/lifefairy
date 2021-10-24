@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.danny.lifefairy.R
@@ -33,6 +34,9 @@ class EmailActivity : AppCompatActivity() {
         emailBinding = ActivityEmailBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        var checkNextPage = false
+
 
         binding.nextStepAuthEmailBtn.setOnClickListener {
 //            api.get_users().enqueue(object : Callback<HTTP_GET_Model>{
@@ -65,24 +69,34 @@ class EmailActivity : AppCompatActivity() {
 //                }
 //            })
 
-            val intent = Intent(this, AuthEmailActivity::class.java)
-            startActivity(intent)
+            if (checkNextPage) {
+                val intent = Intent(this, PasswordActivity::class.java)
+                intent.putExtra("email", questionEmail.text.toString())
+                //intent.putExtra("email", "문자열 전달")
+                startActivity(intent)
+            }
         }
 
         questionEmail = findViewById(R.id.emailArea)
 
         val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+
         fun checkEmail() : Boolean {
             var email = questionEmail.text.toString().trim() //공백제거
             var validEmail = findViewById<TextView>(R.id.validEmail)
+            var validBtn = findViewById<ImageView>(R.id.next_step_auth_email_btn)
             val p = Pattern.matches(emailValidation, email) // 서로 패턴이 맞닝?
             if (p) {
                 //이메일 형태가 정상일 경우
                 validEmail.setText("")
+                validBtn.setImageResource(R.drawable.right_click_bg_black_r)
+                checkNextPage = true
                 //questionEmail.setTextColor(-65536)
                 return true
             } else {
                 validEmail.setText("이메일 형식이 올바른지 확인해주세요.")
+                validBtn.setImageResource(R.drawable.right_click_bg_black)
+                checkNextPage = false
                 //questionEmail.setTextColor(-65536)
                 //또는 questionEmail.setTextColor(R.color.red.toInt())
                 return false
