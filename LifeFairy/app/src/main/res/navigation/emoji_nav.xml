@@ -18,10 +18,18 @@
         android:id="@+id/secondEmojiFragment"
         android:name="com.danny.lifefairy.auth.SecondEmojiFragment"
         android:label="fragment_second_emoji"
-        tools:layout="@layout/fragment_second_emoji" />
+        tools:layout="@layout/fragment_second_emoji" >
+        <action
+            android:id="@+id/action_secondEmojiFragment_to_thirdEmojiFragment"
+            app:destination="@id/thirdEmojiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/thirdEmojiFragment"
         android:name="com.danny.lifefairy.auth.ThirdEmojiFragment"
         android:label="fragment_third_emoji"
-        tools:layout="@layout/fragment_third_emoji" />
+        tools:layout="@layout/fragment_third_emoji" >
+        <action
+            android:id="@+id/action_thirdEmojiFragment_to_firstEmojiFragment"
+            app:destination="@id/firstEmojiFragment" />
+    </fragment>
 </navigation>

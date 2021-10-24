@@ -1,43 +1,57 @@
 package com.danny.lifefairy.auth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.danny.lifefairy.R
+import com.danny.lifefairy.databinding.ActivityEmojiBinding
 
 class EmojiActivity : AppCompatActivity() {
+
+    private var emojiBinding : ActivityEmojiBinding? = null
+    private val binding get() = emojiBinding!!
+
+    var emoji = ""
+    var checkNextPage = false
+
+    lateinit var nextBtn : ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_emoji)
+
+        emojiBinding = ActivityEmojiBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
 
         val email = intent.getStringExtra("email")
         val password = intent.getStringExtra("password")
         val nickname = intent.getStringExtra("nickname")
-        // Toast.makeText(this, email, Toast.LENGTH_LONG).show()
 
-        val emojis = mutableListOf<String>()
-        emojis.add("\uD83D\uDC36")
-        emojis.add("\uD83E\uDD8A")
-        emojis.add("\uD83E\uDD84")
-        emojis.add("\uD83D\uDC37")
-        emojis.add("\uD83D\uDC39")
-        emojis.add("\uD83D\uDC30")
-        emojis.add("\uD83D\uDC3B")
-        emojis.add("\uD83D\uDC3C")
-        emojis.add("\uD83D\uDC38")
+        nextBtn = findViewById(R.id.nextStepAuthBtn)
 
-        val emojiRV = findViewById<RecyclerView>(R.id.emojiRV)
-        val emojiRVAdapter = EmojiRVAdapter(emojis)
-        emojiRV.adapter = emojiRVAdapter
-        emojiRV.layoutManager = LinearLayoutManager(this)
+        binding.backBtn.setOnClickListener {
+            onBackPressed()
+        }
 
-        emojiRVAdapter.itemClick = object : EmojiRVAdapter.ItemClick {
-            override fun onClick(view : View, position : Int) {
-                Toast.makeText(baseContext, emojis[position], Toast.LENGTH_LONG).show()
+        binding.nextStepAuthBtn.setOnClickListener {
+            if (checkNextPage) {
+                val intent = Intent(this, AuthEmailActivity::class.java)
+                intent.putExtra("emoji", emoji)
+                //intent.putExtra("email", "문자열 전달")
+                startActivity(intent)
             }
         }
+
+    }
+
+    fun changeEmoji(fragmentEmoji : String) {
+        emoji = fragmentEmoji
+        checkNextPage = true
+        nextBtn.setImageResource(R.drawable.right_click_bg_black_r)
     }
 }

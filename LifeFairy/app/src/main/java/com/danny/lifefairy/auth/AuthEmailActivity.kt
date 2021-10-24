@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import com.danny.lifefairy.R
 import com.danny.lifefairy.databinding.ActivityAuthEmailBinding
 import com.danny.lifefairy.form.PostModel
@@ -27,6 +28,9 @@ class AuthEmailActivity : AppCompatActivity() {
         emailAuthBinding = ActivityAuthEmailBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        val emoji = intent.getStringExtra("emoji")
+        Toast.makeText(this, emoji, Toast.LENGTH_LONG).show()
 
         binding.testBtn.setOnClickListener {
 
