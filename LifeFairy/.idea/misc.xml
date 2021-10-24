@@ -11,11 +11,19 @@
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/drawable/rounded_edittext.xml" value="0.37037037037037035" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_auth_email.xml" value="0.365625" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_email.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_emoji.xml" value="0.2644927536231884" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_intro.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_nickname.xml" value="0.2644927536231884" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_password.xml" value="0.20520833333333333" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_passworda.xml" value="0.2644927536231884" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/emoji_item.xml" value="0.2046875" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/fragment_blank.xml" value="0.26979166666666665" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/fragment_first_emoji.xml" value="0.2644927536231884" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/fragment_second_emoji.xml" value="0.2644927536231884" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/fragment_secpmd_emoji.xml" value="0.2644927536231884" />
+        <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/fragment_third_emoji.xml" value="0.2644927536231884" />
       </map>
     </option>
   </component>

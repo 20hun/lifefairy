@@ -23,7 +23,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/pretendardbold"
-        android:text="한 번 더 입력해주세요"
+        android:text="닉네임을 입력해주세요"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -35,7 +35,19 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/pretendardbold"
-        android:text="혹시 모르니 한 번 더 확인할게요!"
+        android:text="날 알아볼 수 있는 닉네임을 지어보세요!"
+        android:textColor="#4D000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text="한글 1~3글자가 적당해요."
         android:textColor="#4D000000"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -43,22 +55,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/passwordArea"
+        android:id="@+id/nicknameArea"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="24dp"
         android:gravity="center"
-        android:inputType="textPassword"
         android:background="@drawable/border_black"
-        android:hint="비밀번호"
+        android:hint="닉네임"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/validPassword"
+        android:id="@+id/validNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
@@ -71,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/next_step_auth_password_btn"
+        android:id="@+id/next_step_auth_emoji_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"

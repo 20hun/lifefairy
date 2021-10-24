@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emoji_nav"
+    app:startDestination="@id/firstEmojiFragment">
+
+    <fragment
+        android:id="@+id/firstEmojiFragment"
+        android:name="com.danny.lifefairy.auth.FirstEmojiFragment"
+        android:label="fragment_first_emoji"
+        tools:layout="@layout/fragment_first_emoji" >
+        <action
+            android:id="@+id/action_firstEmojiFragment_to_secondEmojiFragment"
+            app:destination="@id/secondEmojiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondEmojiFragment"
+        android:name="com.danny.lifefairy.auth.SecondEmojiFragment"
+        android:label="fragment_second_emoji"
+        tools:layout="@layout/fragment_second_emoji" />
+    <fragment
+        android:id="@+id/thirdEmojiFragment"
+        android:name="com.danny.lifefairy.auth.ThirdEmojiFragment"
+        android:label="fragment_third_emoji"
+        tools:layout="@layout/fragment_third_emoji" />
+</navigation>

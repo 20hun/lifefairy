@@ -23,7 +23,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/pretendardbold"
-        android:text="한 번 더 입력해주세요"
+        android:text="프로필 이모지를 골라볼까요?"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -35,43 +35,35 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/pretendardbold"
-        android:text="혹시 모르니 한 번 더 확인할게요!"
+        android:text="집안일 메이트들이 날 알아볼 수 있는"
+        android:textColor="#4D000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text="이모지를 설정해주세요."
         android:textColor="#4D000000"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordArea"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/emojiRV"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:inputType="textPassword"
-        android:background="@drawable/border_black"
-        android:hint="비밀번호"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="30dp"/>
 
-    <TextView
-        android:id="@+id/validPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:fontFamily="@font/pretendardbold"
-        android:text=""
-        android:textColor="#ff4e4e"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/next_step_auth_password_btn"
+        android:id="@+id/next_step_auth_emoji_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
@@ -79,5 +71,15 @@
         android:src="@drawable/right_click_bg_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/emoji_nav"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="500dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
