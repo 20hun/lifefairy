@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:text="이메일 주소를 입력해주세요"
+        android:text="🐶🐶🐶🐼🐱"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>

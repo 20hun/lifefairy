@@ -6,24 +6,143 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/kakao_logout_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그아웃"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/kakao_unlink_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:orientation="vertical"
+        android:background="@color/black"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/kakao_unlink_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="회원 탈퇴"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_edittext2"
+            android:layout_weight="9">
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                tools:context="com.example.workoutProject.fragment.first.CalendarFragment">
+
+                <TextView
+                    android:id="@+id/calendar_year_month_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="2020년 01월"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/pretendardsemibold"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginStart="20dp"/>
+                <LinearLayout
+                    android:id="@+id/calendar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/calendar_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:spanCount="7"
+                        android:adjustViewBounds="true"
+                        app:layout_constrainedHeight="true"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/calendar_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="월"/>
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="화"/>
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="수"/>
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="목"/>
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="금"/>
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="토"/>
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="일"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_weight="5">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_weight="25">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/kakao_logout_button"-->
+<!--        android:layout_width="187dp"-->
+<!--        android:layout_height="363dp"-->
+<!--        android:layout_marginTop="69dp"-->
+<!--        android:layout_marginEnd="224dp"-->
+<!--        android:layout_marginBottom="251dp"-->
+<!--        android:text="로그아웃"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/kakao_unlink_button"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/kakao_unlink_button"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="회원 탈퇴"-->
+<!--        android:textSize="20sp"-->
+<!--        tools:layout_editor_absoluteX="149dp"-->
+<!--        tools:layout_editor_absoluteY="683dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

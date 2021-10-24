@@ -5,8 +5,8 @@
     <corners
         android:bottomLeftRadius="23dp"
         android:bottomRightRadius="23dp"
-        android:topLeftRadius="23dp"
-        android:topRightRadius="23dp"></corners>
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"></corners>
     <stroke android:width="0dp"
         android:color="#000000"></stroke>
 </shape>

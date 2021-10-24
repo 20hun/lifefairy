@@ -11,8 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.LifeFairy">
+        android:theme="@style/Theme.LifeFairy"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".auth.PasswordActivity"
+            android:exported="true" />
         <activity
             android:name=".auth.AuthEmailActivity"
             android:exported="true" />
