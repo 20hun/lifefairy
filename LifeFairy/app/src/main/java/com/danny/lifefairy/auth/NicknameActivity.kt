@@ -79,7 +79,7 @@ class NicknameActivity : AppCompatActivity() {
                 val intent = Intent(this, EmojiActivity::class.java)
                 intent.putExtra("email", email)
                 intent.putExtra("password", password)
-                intent.putExtra("password", questionNickname.text.toString())
+                intent.putExtra("name", questionNickname.text.toString())
                 startActivity(intent)
             }
         }
