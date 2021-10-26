@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_nav">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/firstMainFragment">
 
+    <fragment
+        android:id="@+id/firstMainFragment"
+        android:name="com.danny.lifefairy.fragmain.FirstMainFragment"
+        android:label="fragment_first_main"
+        tools:layout="@layout/fragment_first_main" >
+        <action
+            android:id="@+id/action_firstMainFragment_to_secondMainFragment"
+            app:destination="@id/secondMainFragment" />
+        <action
+            android:id="@+id/action_firstMainFragment_to_thirdMainFragment"
+            app:destination="@id/thirdMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondMainFragment"
+        android:name="com.danny.lifefairy.fragmain.SecondMainFragment"
+        android:label="fragment_second_main"
+        tools:layout="@layout/fragment_second_main" >
+        <action
+            android:id="@+id/action_secondMainFragment_to_firstMainFragment"
+            app:destination="@id/firstMainFragment" />
+        <action
+            android:id="@+id/action_secondMainFragment_to_thirdMainFragment"
+            app:destination="@id/thirdMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdMainFragment"
+        android:name="com.danny.lifefairy.fragmain.ThirdMainFragment"
+        android:label="fragment_third_main"
+        tools:layout="@layout/fragment_third_main" >
+        <action
+            android:id="@+id/action_thirdMainFragment_to_firstMainFragment"
+            app:destination="@id/firstMainFragment" />
+        <action
+            android:id="@+id/action_thirdMainFragment_to_secondMainFragment"
+            app:destination="@id/secondMainFragment" />
+    </fragment>
 </navigation>
