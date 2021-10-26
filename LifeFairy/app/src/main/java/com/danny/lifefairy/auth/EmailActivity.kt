@@ -11,13 +11,18 @@ import android.widget.TextView
 import android.widget.Toast
 import com.danny.lifefairy.R
 import com.danny.lifefairy.databinding.ActivityEmailBinding
+import com.danny.lifefairy.form.PostEmailCheckModel
 import com.danny.lifefairy.form.PostModel
 import com.danny.lifefairy.form.PostResult
 import com.danny.lifefairy.service.SignService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.regex.Pattern
+import kotlin.concurrent.thread
 
 class EmailActivity : AppCompatActivity() {
 
@@ -25,6 +30,8 @@ class EmailActivity : AppCompatActivity() {
     private val binding get() = emailBinding!!
 
     lateinit var questionEmail : TextView
+
+    val api = SignService.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +44,24 @@ class EmailActivity : AppCompatActivity() {
 
         binding.nextStepAuthEmailBtn.setOnClickListener {
             if (checkNextPage) {
-                val intent = Intent(this, PasswordActivity::class.java)
-                intent.putExtra("email", questionEmail.text.toString())
-                //intent.putExtra("email", "문자열 전달")
-                startActivity(intent)
+
+                val data = PostEmailCheckModel(
+                    questionEmail.text.toString()
+                )
+
+                thread {
+                    val resp = api.post_email_check(data).execute()
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (resp.isSuccessful) {
+                            val intent = Intent(this@EmailActivity, PasswordActivity::class.java)
+                            intent.putExtra("email", questionEmail.text.toString())
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this@EmailActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
+                }
             }
         }
 

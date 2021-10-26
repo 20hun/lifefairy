@@ -1,8 +1,6 @@
 package com.danny.lifefairy.service
 
-import com.danny.lifefairy.form.HTTP_GET_Model
-import com.danny.lifefairy.form.PostModel
-import com.danny.lifefairy.form.PostResult
+import com.danny.lifefairy.form.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -16,6 +14,18 @@ interface SignService {
     @Headers("content-type: application/json")
     fun post_users(
         @Body jsonparams: PostModel
+    ): Call<PostResult>
+
+    @POST("/api/users/confirm")
+    @Headers("content-type: application/json")
+    fun post_email_auth(
+        @Body jsonparams: PostEmailAuthModel
+    ): Call<PostResult>
+
+    @POST("/api/users/email-check")
+    @Headers("content-type: application/json")
+    fun post_email_check(
+        @Body jsonparams: PostEmailCheckModel
     ): Call<PostResult>
 
     @GET("/api/users/email-check")

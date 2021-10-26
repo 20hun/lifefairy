@@ -76,7 +76,6 @@ class EmojiActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
                         Log.d("log222", response.toString())
                         Log.d("log222", response.body().toString())
-                        authEmailCode = response.code().toString()
                     }
 
                     override fun onFailure(call: Call<PostResult>, t: Throwable) {
@@ -87,6 +86,7 @@ class EmojiActivity : AppCompatActivity() {
                 })
 
                 val intent = Intent(this, AuthEmailActivity::class.java)
+                intent.putExtra("email", email)
                 //intent.putExtra("email", "문자열 전달")
                 startActivity(intent)
             }
