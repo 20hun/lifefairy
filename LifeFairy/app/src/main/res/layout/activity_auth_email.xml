@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,61 +8,138 @@
     tools:context=".auth.EmailActivity">
 
     <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/left_click_back"
-        android:layout_width="30dp"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="🐶🐶🐶🐼🐱"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text="메일로 인증번호를 보냈어요"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text="아직 메일이 안 왔다면"
+        android:textColor="#4D000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text="스팸함도 확인해보세요!"
+        android:textColor="#4D000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/one_btn"
-        android:hint="example@lifefairy.com"
-        android:padding="10dp"
-        android:background="@drawable/border_black"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="230dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/authNumArea1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border_gray"
+            android:maxLength="1"
+            android:inputType="number"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/authNumArea2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/border_gray"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/authNumArea3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border_gray"
+            android:maxLength="1"
+            android:inputType="number"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/authNumArea4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:maxLength="1"
+            android:inputType="number"
+            android:background="@drawable/border_gray"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/authNumArea5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border_gray"
+            android:maxLength="1"
+            android:inputType="number"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/authNumArea6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/border_gray"
+            android:maxLength="1"
+            android:inputType="number"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/validNickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text=""
+        android:textColor="#ff4e4e"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/test_btn"
+        android:id="@+id/next_step_auth_email_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="40dp"
         android:src="@drawable/right_click_bg_black"
-        android:layout_width="70dp"
-        android:layout_marginLeft="320dp"
-        android:layout_marginTop="60dp"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/two_btn"
-        android:hint="example@lifefairy.com"
-        android:padding="10dp"
-        android:background="@drawable/border_black"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
-    <EditText
-        android:id="@+id/three_btn"
-        android:hint="example@lifefairy.com"
-        android:padding="10dp"
-        android:background="@drawable/border_black"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
-    <EditText
-        android:id="@+id/four_btn"
-        android:hint="example@lifefairy.com"
-        android:padding="10dp"
-        android:background="@drawable/border_black"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

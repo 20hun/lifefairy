@@ -31,6 +31,8 @@ class EmojiActivity : AppCompatActivity() {
     var emoji = ""
     var checkNextPage = false
 
+    var authEmailCode = ""
+
     lateinit var nextBtn : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,15 +71,12 @@ class EmojiActivity : AppCompatActivity() {
                     name,
                     emoji
                 )
-//                Log.d("log222", email.toString())
-//                Log.d("log222", password.toString())
-//                Log.d("log222", name.toString())
-//                Log.d("log222", emoji)
 
                 api.post_users(data).enqueue(object : Callback<PostResult> {
                     override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
                         Log.d("log222", response.toString())
                         Log.d("log222", response.body().toString())
+                        authEmailCode = response.code().toString()
                     }
 
                     override fun onFailure(call: Call<PostResult>, t: Throwable) {
@@ -88,7 +87,6 @@ class EmojiActivity : AppCompatActivity() {
                 })
 
                 val intent = Intent(this, AuthEmailActivity::class.java)
-                intent.putExtra("emoji", emoji)
                 //intent.putExtra("email", "문자열 전달")
                 startActivity(intent)
             }

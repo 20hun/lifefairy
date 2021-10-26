@@ -1,7 +1,10 @@
 package com.danny.lifefairy.auth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
@@ -20,12 +23,100 @@ class AuthEmailActivity : AppCompatActivity() {
     private var emailAuthBinding : ActivityAuthEmailBinding? = null
     private val binding get() = emailAuthBinding!!
 
+    var checkNextPage = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         emailAuthBinding = ActivityAuthEmailBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        binding.authNumArea1.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                // text가 변경된 후 호출
+                binding.authNumArea1.setBackgroundResource(R.drawable.border_black)
+                binding.authNumArea2.requestFocus()
+            }
+
+        })
+        binding.authNumArea2.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                // text가 변경된 후 호출
+                binding.authNumArea2.setBackgroundResource(R.drawable.border_black)
+                binding.authNumArea3.requestFocus()
+            }
+
+        })
+        binding.authNumArea3.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                // text가 변경된 후 호출
+                binding.authNumArea3.setBackgroundResource(R.drawable.border_black)
+                binding.authNumArea4.requestFocus()
+            }
+
+        })
+        binding.authNumArea4.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                // text가 변경된 후 호출
+                binding.authNumArea4.setBackgroundResource(R.drawable.border_black)
+                binding.authNumArea5.requestFocus()
+            }
+
+        })
+        binding.authNumArea5.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                // text가 변경된 후 호출
+                binding.authNumArea5.setBackgroundResource(R.drawable.border_black)
+                binding.authNumArea6.requestFocus()
+            }
+
+        })
+        binding.authNumArea6.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+            override fun afterTextChanged(s: Editable?) {
+                // text가 변경된 후 호출
+                binding.authNumArea6.setBackgroundResource(R.drawable.border_black)
+                checkNextPage = true
+                binding.nextStepAuthEmailBtn.setImageResource(R.drawable.right_click_bg_black_r)
+            }
+
+        })
+
+        binding.backBtn.setOnClickListener {
+            onBackPressed()
+        }
+
+        binding.nextStepAuthEmailBtn.setOnClickListener {
+            if (checkNextPage) {
+                // 여기서 통신해서 코드 맞느지 검증하는 조건문
+                val intent = Intent(this, InviteActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
     }
 }

@@ -14,6 +14,9 @@
         android:theme="@style/Theme.LifeFairy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".auth.InviteActivity"
+            android:exported="true" />
+        <activity
             android:name=".auth.EmojiActivity"
             android:exported="true" />
         <activity
