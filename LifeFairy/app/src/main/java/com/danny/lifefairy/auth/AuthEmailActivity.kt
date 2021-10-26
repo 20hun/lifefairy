@@ -15,8 +15,12 @@ import com.danny.lifefairy.form.PostModel
 import com.danny.lifefairy.form.PostResult
 import retrofit2.Callback
 import com.danny.lifefairy.service.SignService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 class AuthEmailActivity : AppCompatActivity() {
@@ -124,28 +128,17 @@ class AuthEmailActivity : AppCompatActivity() {
                     confirmCode
                 )
 
-                var responseCode = ""
-
-                api.post_email_auth(data).enqueue(object : Callback<PostResult> {
-                    override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
-                        Log.d("log222", response.toString())
-                        Log.d("log222", response.body().toString())
-                        responseCode = response.code().toString()
-                        Log.d("log222", response.code().toString())
+                thread {
+                    val resp = api.post_email_auth(data).execute()
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (resp.isSuccessful) {
+                            val intent = Intent(this@AuthEmailActivity, LoginActivity::class.java)
+                            intent.putExtra("email", email)
+                            startActivity(intent)
+                        } else {
+                            Log.d("log222", "인증번호 틀림")
+                        }
                     }
-
-                    override fun onFailure(call: Call<PostResult>, t: Throwable) {
-                        // 실패
-                        Log.d("log222", t.message.toString())
-                        Log.d("log222", "fail")
-                    }
-                })
-
-                if(responseCode == "200") {
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Log.d("log222", responseCode)
                 }
             }
         }

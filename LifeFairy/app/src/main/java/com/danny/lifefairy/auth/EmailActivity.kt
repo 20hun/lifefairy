@@ -58,6 +58,7 @@ class EmailActivity : AppCompatActivity() {
                             startActivity(intent)
                         } else {
                             val intent = Intent(this@EmailActivity, LoginActivity::class.java)
+                            intent.putExtra("email", questionEmail.text.toString())
                             startActivity(intent)
                         }
                     }
