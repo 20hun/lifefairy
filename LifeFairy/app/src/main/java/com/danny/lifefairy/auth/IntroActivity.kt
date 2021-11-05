@@ -53,6 +53,13 @@ class IntroActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+
+        // sharedpreferences 테스트
+        Log.e("device", GlobalApplication.prefs.getString("deviceToken", "ttttt"))
+        Log.e("device", GlobalApplication.prefs.getString("devsdf", "ssssss"))
+
+
+
         binding.emailLoginBtn.setOnClickListener {
             val intent = Intent(this, EmailActivity::class.java)
             startActivity(intent)

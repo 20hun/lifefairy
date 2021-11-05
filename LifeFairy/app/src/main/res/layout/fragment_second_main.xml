@@ -54,5 +54,10 @@
             android:text=""
             android:textSize="20sp" />
     </LinearLayout>
+    <ImageView
+        android:padding="10dp"
+        android:src="@drawable/workdone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

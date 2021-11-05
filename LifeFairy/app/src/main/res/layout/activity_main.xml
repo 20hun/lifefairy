@@ -25,69 +25,174 @@
                 android:orientation="vertical"
                 tools:context="com.example.workoutProject.fragment.first.CalendarFragment">
 
-                <TextView
-                    android:id="@+id/calendar_year_month_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="2020년 01월"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/pretendardsemibold"
-                    android:gravity="center_vertical|start"
-                    android:layout_marginStart="20dp"/>
                 <LinearLayout
-                    android:id="@+id/calendar_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/calendar_view"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/calendar_year_month_text"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:spanCount="7"
-                        android:adjustViewBounds="true"
-                        app:layout_constrainedHeight="true"/>
+                        android:layout_height="60dp"
+                        android:text="2021년 10월"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/pretendardsemibold"
+                        android:gravity="center_vertical|start"
+                        android:layout_marginStart="20dp"/>
+
+                    <ImageView
+                        android:layout_marginLeft="220dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mypagebtn" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:id="@+id/calendar_header"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="월"/>
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="25"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="월"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="화"/>
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="26"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="화"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="수"/>
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="27"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="수"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="목"/>
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="28"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="목"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="금"/>
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="29"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="금"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="토"/>
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="30"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="토"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="일"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="31"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/pretendardbold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:text="일"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -102,6 +207,11 @@
             android:layout_height="0dp"
             android:background="@drawable/rounded_edittext"
             android:layout_weight="5">
+            <ImageView
+                android:src="@drawable/nudge"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
