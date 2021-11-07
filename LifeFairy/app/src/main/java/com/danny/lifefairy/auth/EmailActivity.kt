@@ -13,7 +13,6 @@ import com.danny.lifefairy.R
 import com.danny.lifefairy.databinding.ActivityEmailBinding
 import com.danny.lifefairy.form.PostEmailCheckModel
 import com.danny.lifefairy.form.PostModel
-import com.danny.lifefairy.form.PostResult
 import com.danny.lifefairy.service.SignService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

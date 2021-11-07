@@ -16,29 +16,37 @@ interface SignService {
     @Headers("content-type: application/json")
     fun post_users(
         @Body jsonparams: PostModel
-    ): Call<PostResult>
+    ): Call<TokenResult>
 
     @POST("/api/users/confirm")
     @Headers("content-type: application/json")
     fun post_email_auth(
         @Body jsonparams: PostEmailAuthModel
-    ): Call<PostResult>
+    ): Call<TokenResult>
 
     @POST("/api/users/email-check")
     @Headers("content-type: application/json")
     fun post_email_check(
         @Body jsonparams: PostEmailCheckModel
-    ): Call<PostResult>
+    ): Call<TokenResult>
 
     @POST("/api/users/login")
     @Headers("content-type: application/json")
     fun post_login(
         @Body jsonparams: PostLoginModel
-    ): Call<PostResult>
+    ): Call<TokenResult>
 
     @GET("/api/spaces/check-space")
     fun get_space_check(
     ): Call<HTTP_GET_Model>
+
+    @GET("/api/nudges")
+    fun get_nudge_text(
+    ): Call<NudgeModel>
+
+    @POST("/api/users/kakao")
+    fun exchange_kakao_token(
+    ): Call<TokenResult>
 
     companion object { // static 처럼 공유객체로 사용가능함. 모든 인스턴스가 공유하는 객체로서 동작함.
         private const val BASE_URL = "http://133.186.251.93/"

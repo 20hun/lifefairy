@@ -1,11 +1,30 @@
 package com.danny.lifefairy.form
 
+import com.google.gson.Gson
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+
 data class HTTP_GET_Model(
     var something : String? =null ,
     var users : ArrayList<UserModel>? =null,
     var spaceYn : String?=null
 )
 
+data class NudgeModel(
+    var data : NudgeDataModel?= null
+)
+
+data class NudgeDataModel(
+    var mainMsg : String?=null,
+    var feedback : FeedbackDataModel? =null
+)
+data class FeedbackDataModel(
+    var id : Int?=null,
+    var emoji: String?=null,
+    var message: String?=null,
+    var type: String?=null
+)
 
 data class UserModel(
     var idx : Int? =null ,
@@ -34,7 +53,7 @@ data class PostEmailAuthModel(
     val confirmCode : String?=null
 )
 
-data class PostResult(
+data class TokenResult(
     var error : String? =null ,
     var message : String?=null,
     var access_token : String?=null,

@@ -41,6 +41,7 @@
                         android:layout_marginStart="20dp"/>
 
                     <ImageView
+                        android:id="@+id/myPageBtn"
                         android:layout_marginLeft="220dp"
                         android:layout_marginTop="17dp"
                         android:layout_width="wrap_content"
@@ -207,9 +208,11 @@
             android:layout_height="0dp"
             android:background="@drawable/rounded_edittext"
             android:layout_weight="5">
-            <ImageView
-                android:src="@drawable/nudge"
-                android:padding="10dp"
+            <TextView
+                android:id="@+id/nudgeText"
+                android:text=""
+                android:textSize="30sp"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -226,15 +229,15 @@
             android:background="@drawable/rounded_edittext"
             android:layout_weight="25">
 
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/fragmentContainerView2"
-                    android:name="androidx.navigation.fragment.NavHostFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:defaultNavHost="true"
-                    app:navGraph="@navigation/main_nav"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="1dp" />
+<!--                <androidx.fragment.app.FragmentContainerView-->
+<!--                    android:id="@+id/fragmentContainerView2"-->
+<!--                    android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    app:defaultNavHost="true"-->
+<!--                    app:navGraph="@navigation/main_nav"-->
+<!--                    tools:layout_editor_absoluteX="1dp"-->
+<!--                    tools:layout_editor_absoluteY="1dp" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,6 +32,7 @@ class SplashActivity : AppCompatActivity() {
             val msg = getString(R.string.msg_token_fmt, token)
             Log.e("devicetoken", msg)
             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+            Log.e("devicetoken", GlobalApplication.prefs.getString("accessToken", "비어있음"))
 
             GlobalApplication.prefs.setString("deviceToken", msg)
         })

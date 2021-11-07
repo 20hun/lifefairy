@@ -12,7 +12,6 @@ import com.danny.lifefairy.R
 import com.danny.lifefairy.databinding.ActivityAuthEmailBinding
 import com.danny.lifefairy.form.PostEmailAuthModel
 import com.danny.lifefairy.form.PostModel
-import com.danny.lifefairy.form.PostResult
 import retrofit2.Callback
 import com.danny.lifefairy.service.SignService
 import kotlinx.coroutines.CoroutineScope

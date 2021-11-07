@@ -26,7 +26,9 @@ import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
 import android.R.attr.data
 import android.R.attr.data
+import com.danny.lifefairy.service.SignService
 import com.google.android.gms.tasks.Task
+import kotlin.concurrent.thread
 
 
 class IntroActivity : AppCompatActivity() {
@@ -126,10 +128,21 @@ class IntroActivity : AppCompatActivity() {
             }
             else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                Log.d(TAG, token.accessToken)
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
+                // kakao access token
+                Log.d("kakaoToken", token.accessToken)
+                thread {
+                    val api = SignService.tokenRequest(token.accessToken)
+                    val resp = api.exchange_kakao_token().execute()
+                    if (resp.isSuccessful) {
+                        GlobalApplication.prefs.setString("accessToken", resp.body()?.access_token.toString())
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        finish()
+                    } else {
+                        Toast.makeText(this, "http exchange kakao 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             }
         }
 
