@@ -80,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                             Log.d("log223", resp.toString())
                             Log.d("log223", resp.body().toString())
                             val api2 = SignService.tokenRequest(resp.body()?.access_token.toString())
+                            GlobalApplication.prefs.setString("accessToken", resp.body()?.access_token.toString())
                             thread {
                                 val tf = api2.get_space_check().execute()
                                 Log.d("log223", tf.body().toString())

@@ -3,11 +3,13 @@ package com.danny.lifefairy
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.icu.util.UniversalTimeScale.toLong
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.danny.lifefairy.auth.GlobalApplication
 import com.danny.lifefairy.auth.IntroActivity
 import com.danny.lifefairy.databinding.ActivityMainBinding
@@ -18,6 +20,7 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private var mainBinding : ActivityMainBinding? = null
     private val binding get() = mainBinding!!
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,8 +38,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val now = System.currentTimeMillis()
+        val now2 = LocalDate.now()
+        var day_list = mutableListOf<String>()
+        for (i in -6..6) {
+            day_list.add(now2.plusDays(i.toLong()).toString())
+        }
+        // Log.d("yoil", day_list.toString())
+        Log.d("yoil", now2.toString()) //2021-11-06
+
+
         val yearMonthForm = SimpleDateFormat("yyyy년MM월", Locale.KOREA).format(now)
         binding.calendarYearMonthText.setText(yearMonthForm)
+        val dayName = SimpleDateFormat("E", Locale.KOREA).format(now)
+        //val day = SimpleDateFormat("dd", Locale.KOREA).format(now)
+        Log.d("yoil", dayName)
+        val dayName_list = listOf(binding.mon, binding.tue, binding.wed, binding.thu, binding.fri, binding.sat, binding.sun)
+        when (dayName) {
+            "월" -> {
+                for (i in 6..12){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i-6].setText(day)
+                }
+            }
+            "일" -> {
+                for (i in 0..6){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i].setText(day)
+                }
+            }
+            else -> binding.mon.setText("21")
+        }
 
         thread {
             val api = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
