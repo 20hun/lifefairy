@@ -54,6 +54,7 @@
                     android:orientation="horizontal"
                     android:layout_height="match_parent">
                     <LinearLayout
+                        android:id="@+id/monL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -75,6 +76,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/tueL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -96,10 +98,10 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/wedL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="@drawable/border_none"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
@@ -118,6 +120,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/thuL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -139,6 +142,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/friL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -160,6 +164,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/satL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -181,6 +186,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/sunL"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"

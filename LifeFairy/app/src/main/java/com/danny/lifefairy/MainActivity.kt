@@ -59,14 +59,51 @@ class MainActivity : AppCompatActivity() {
                     val day = day_list[i].split('-')[2]
                     dayName_list[i-6].setText(day)
                 }
+                binding.monL.setBackgroundResource(R.drawable.border_none)
+            }
+            "화" -> {
+                for (i in 5..11){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i-5].setText(day)
+                }
+                binding.tueL.setBackgroundResource(R.drawable.border_none)
+            }
+            "수" -> {
+                for (i in 4..10){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i-4].setText(day)
+                }
+                binding.wedL.setBackgroundResource(R.drawable.border_none)
+            }
+            "목" -> {
+                for (i in 3..9){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i-3].setText(day)
+                }
+                binding.thuL.setBackgroundResource(R.drawable.border_none)
+            }
+            "금" -> {
+                for (i in 2..8){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i-2].setText(day)
+                }
+                binding.friL.setBackgroundResource(R.drawable.border_none)
+            }
+            "토" -> {
+                for (i in 1..7){
+                    val day = day_list[i].split('-')[2]
+                    dayName_list[i-1].setText(day)
+                }
+                binding.satL.setBackgroundResource(R.drawable.border_none)
             }
             "일" -> {
                 for (i in 0..6){
                     val day = day_list[i].split('-')[2]
                     dayName_list[i].setText(day)
                 }
+                binding.sunL.setBackgroundResource(R.drawable.border_none)
             }
-            else -> binding.mon.setText("21")
+            else -> binding.mon.setText("else")
         }
 
         thread {
