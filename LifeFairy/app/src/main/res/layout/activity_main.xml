@@ -242,15 +242,31 @@
             android:background="@drawable/rounded_edittext"
             android:layout_weight="25">
 
-<!--                <androidx.fragment.app.FragmentContainerView-->
-<!--                    android:id="@+id/fragmentContainerView2"-->
-<!--                    android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    app:defaultNavHost="true"-->
-<!--                    app:navGraph="@navigation/main_nav"-->
-<!--                    tools:layout_editor_absoluteX="1dp"-->
-<!--                    tools:layout_editor_absoluteY="1dp" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainTestRV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:text="오늘 추가된 집안일이 없네요!\n여기서 추가해볼까요?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

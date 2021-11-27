@@ -1,14 +1,27 @@
 package com.danny.lifefairy.service
 
 import com.danny.lifefairy.form.*
-import com.google.android.gms.auth.api.accounttransfer.AuthenticatorTransferCompletionStatus
+import com.danny.lifefairy.form.json.spaceInfo.SpaceStatusUser
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.FieldMap
+
+import retrofit2.http.POST
+
+import retrofit2.http.FormUrlEncoded
+
+
+
+
+
+
 
 interface SignService {
 
@@ -43,6 +56,11 @@ interface SignService {
     @GET("/api/nudges")
     fun get_nudge_text(
     ): Call<NudgeModel>
+
+    @GET("/api/todos/status/{date}")
+    fun get_space_user(
+        @Path("date") date : String?
+    ): Call<SpaceStatusUser>
 
     @POST("/api/users/kakao")
     fun exchange_kakao_token(

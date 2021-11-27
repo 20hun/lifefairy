@@ -7,21 +7,28 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.danny.lifefairy.auth.GlobalApplication
 import com.danny.lifefairy.auth.IntroActivity
 import com.danny.lifefairy.databinding.ActivityMainBinding
+import com.danny.lifefairy.form.SpaceId
+import com.danny.lifefairy.mainrv.RVMainAdapter
 import com.danny.lifefairy.service.SignService
 import com.google.android.datatransport.runtime.util.PriorityMapping.toInt
 import com.google.android.gms.common.server.converter.StringToIntConverter
+import com.google.gson.JsonObject
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import org.json.JSONObject
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val yearMonthForm = SimpleDateFormat("yyyy년MM월", Locale.KOREA).format(now)
+        val today = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(now)
         binding.calendarYearMonthText.setText(yearMonthForm)
         val dayName = SimpleDateFormat("E", Locale.KOREA).format(now)
         //val day = SimpleDateFormat("dd", Locale.KOREA).format(now)
@@ -125,6 +133,63 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "nudge 가져오기 실패하였습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        thread {
+            val api = SignService.tokenRequest("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsIm5hbWUiOiJodW4iLCJpYXQiOjE2MzgwMDYzNzUsImV4cCI6MTYzODA5Mjc3NSwiaXNzIjoibGlmZWZhaXJ5In0.zlie4vccQitgttOpg_JGW3RRExevM4VMlfGvJ08dXiI")
+            val resp2 = api.get_space_user(today).execute()
+            Log.d("nudgeText", today)
+            if (resp2.isSuccessful) {
+
+//                val jsonString = resp2.body().toString().trimIndent()
+//                val jsonObjects = JSONObject(jsonString)
+//                val jsonArray = jsonObjects.getJSONArray("data")
+//                for (i in 0..jsonArray.length() - 1) {
+//                    val iObject = jsonArray.getJSONObject(i)
+//                    val userr = iObject.getString("user")
+//                    val ur = iObject["user"]
+//                    val aa = listOf(ur)
+//                    Log.d("nudgeText", userr.javaClass.toString())
+//                    Log.d("nudgeText", "================== ${i + 1} 번째==================")
+//                    Log.d("nudgeText", "${i + 1}번 id : $userr")
+//                    Log.d("nudgeText", "${i + 1}번 id : $ur")
+//                }
+
+                Log.d("nudgeText", resp2.body().toString())
+                Log.d("nudgeText", resp2.body()?.data.toString())
+                Log.d("nudgeText", resp2.body()?.merge?.get(0)?.user?.get(0)?.name.toString())
+                Log.d("nudgeText", resp2.body()?.data?.get(0)?.user?.name.toString())
+
+
+                val items = mutableListOf<SpaceId>()
+
+                for(i in 0..(resp2.body()?.data?.size?.minus(1)!!)){
+                    val name = resp2.body()?.data?.get(i)?.user?.name.toString()
+                    val emoji = resp2.body()?.data?.get(i)?.user?.emoji.toString()
+
+                    items.add(SpaceId(name, emoji))
+                }
+                Log.d("nudgeText", items.toString())
+                Log.d("nudgeText", resp2.body()?.data?.size.toString())
+
+                val rv = binding.mainTestRV
+                val rvAdapter= RVMainAdapter(items)
+                // Only the original thread that created a view hierarchy can touch its views 에러 시 사용
+                runOnUiThread {
+                    rv.adapter = rvAdapter
+                    rv.layoutManager = LinearLayoutManager(this)
+                }
+
+                rvAdapter.itemClick = object : RVMainAdapter.ItemClick {
+                    override fun onClick(view : View, position : Int) {
+                        Toast.makeText(baseContext, items[position].name, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "space 정보 가져오기 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
 
 //        val keyHash = Utility.getKeyHash(this)
 //        Log.d("KEY_HASH", keyHash)
