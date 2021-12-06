@@ -15,4 +15,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/crapRising"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/rising_clap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/crapRising2"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/rising_house"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/crapRising3"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/eyes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

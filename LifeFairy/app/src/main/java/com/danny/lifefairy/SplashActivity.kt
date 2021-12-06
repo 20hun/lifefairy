@@ -8,13 +8,25 @@ import android.util.Log
 import android.widget.Toast
 import com.danny.lifefairy.auth.GlobalApplication
 import com.danny.lifefairy.auth.IntroActivity
+import com.danny.lifefairy.databinding.ActivitySplashBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 
 class SplashActivity : AppCompatActivity() {
+
+    private var splashBinding : ActivitySplashBinding? = null
+    private val binding get() = splashBinding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+
+        splashBinding = ActivitySplashBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        binding.crapRising.animate().translationY(-600F).setDuration(3000).setStartDelay(0)
+        binding.crapRising2.animate().translationY(-700F).setDuration(4000).setStartDelay(0)
+        binding.crapRising3.animate().translationY(-800F).setDuration(5000).setStartDelay(0)
 
         // 로그인 한 상태면 -> 메인 화면
         // 로그인해야 하면 -> intro 회원가입 화면

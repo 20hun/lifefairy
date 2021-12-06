@@ -23,6 +23,9 @@ import com.google.android.gms.common.server.converter.StringToIntConverter
 import com.google.gson.JsonObject
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
@@ -117,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         thread {
             val api = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
             val resp = api.get_nudge_text().execute()
+            Log.d("nudgeText", GlobalApplication.prefs.getString("accessToken", ""))
 
             if (resp.isSuccessful) {
                 Log.d("nudgeText", resp.body()?.data?.mainMsg.toString())
@@ -128,14 +132,16 @@ class MainActivity : AppCompatActivity() {
                 val strEmoji = resp.body()?.data?.feedback?.emoji.toString() // "U+1F44D"
                 val strEmoji2 = strEmoji.replace("U+", "0x")
                 val intEmoji = Integer.decode(strEmoji2) // string to int 해야 함 val x = 0x1F44D
-                binding.nudgeText.setText(resp.body()?.data?.mainMsg.toString().plus(String(Character.toChars(intEmoji))))
+                runOnUiThread {
+                    binding.nudgeText.setText(resp.body()?.data?.mainMsg.toString().plus(String(Character.toChars(intEmoji))))
+                }
             } else {
                 Toast.makeText(this, "nudge 가져오기 실패하였습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
         thread {
-            val api = SignService.tokenRequest("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsIm5hbWUiOiJodW4iLCJpYXQiOjE2MzgwMDYzNzUsImV4cCI6MTYzODA5Mjc3NSwiaXNzIjoibGlmZWZhaXJ5In0.zlie4vccQitgttOpg_JGW3RRExevM4VMlfGvJ08dXiI")
+            val api = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
             val resp2 = api.get_space_user(today).execute()
             Log.d("nudgeText", today)
             if (resp2.isSuccessful) {

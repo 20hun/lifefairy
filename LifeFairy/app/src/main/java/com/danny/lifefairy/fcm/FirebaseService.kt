@@ -1,39 +1,43 @@
-package com.danny.lifefairy.message
+package com.danny.lifefairy.fcm
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Build
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.danny.lifefairy.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import kotlin.concurrent.thread
 
-// 유저의 토큰 정보받아와서
-// firebase 서버로 메시지 보내라 명령
-// firebase 서버에서 앱으로 메시지 보내주기
+
+// 유저 토큰 정보 받아와서
+// Firebase 서버로 메시지 보내라고 명령
+// Firebase 서버에서 앱으로 메시지 보내주고
 // 앱에서는 메시지를 받아서
-// 앱에서 알람 띄어줌
-
+// 앱에서 알림을 띄어줌
 class FirebaseService : FirebaseMessagingService() {
 
     private val TAG = "FirebaseService"
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+    }
+
+    override fun onMessageReceived(message: RemoteMessage) {
+        super.onMessageReceived(message)
+
+//        Log.e(TAG, message.notification?.title.toString())
+//        Log.e(TAG, message.notification?.body.toString())
+
+        Log.e(TAG, message.data["title"].toString())
+
+        val title = message.data["title"].toString()
+        val body = message.data["content"].toString()
+
+        createNotificationChannel()
+        sendNotification(title, body)
     }
 
     //Notification
