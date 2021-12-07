@@ -1,6 +1,5 @@
 package com.danny.lifefairy.auth
 
-import android.R.attr
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +12,6 @@ import com.danny.lifefairy.MainActivity
 import com.danny.lifefairy.R
 import com.danny.lifefairy.databinding.ActivityIntroBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -24,10 +22,11 @@ import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
-import android.R.attr.data
-import android.R.attr.data
+import com.danny.lifefairy.form.PostGoogleModel
 import com.danny.lifefairy.service.SignService
-import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
 
@@ -68,8 +67,8 @@ class IntroActivity : AppCompatActivity() {
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("217859714012-318ue1ehlt64smmst34q89ck6sh50tni.apps.googleusercontent.com")
-            .requestServerAuthCode("217859714012-318ue1ehlt64smmst34q89ck6sh50tni.apps.googleusercontent.com")
+            .requestIdToken("992018839527-1rte0l0d0mkcljrdurhd3ib6p0bkju1v.apps.googleusercontent.com")
+            .requestServerAuthCode("992018839527-1rte0l0d0mkcljrdurhd3ib6p0bkju1v.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
@@ -189,6 +188,38 @@ class IntroActivity : AppCompatActivity() {
                 Log.d(TAG, "firebaseAuthWithGoogle2:" + account.idToken)
                 Log.d(TAG, "firebaseAuthWithGoogle3:" + account.email)
                 Log.d(TAG, "firebaseAuthWithGoogle4:" + account.serverAuthCode)
+
+                val api3 = SignService.create2()
+                val data3 = PostGoogleModel(
+                    "authorization_code",
+                    "992018839527-1rte0l0d0mkcljrdurhd3ib6p0bkju1v.apps.googleusercontent.com",
+                    getString(R.string.google_secret),
+                    "https://localhost.com",
+                    account.serverAuthCode
+                )
+                thread {
+                    val resp = api3.google_access_token(data3).execute()
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (resp.isSuccessful) {
+                            Log.d("google", resp.toString())
+                            Log.d("google", resp.body().toString())
+                            val googleAT = resp.body()?.access_token.toString()
+                            thread {
+                                val api4 = SignService.tokenRequest(googleAT)
+                                val resp4 = api4.exchange_google_token().execute()
+                                if (resp4.isSuccessful) {
+                                    GlobalApplication.prefs.setString("accessToken", resp4.body()?.access_token.toString())
+                                    Log.e("google", "구글 토큰 등록 성공")
+                                } else {
+                                    Log.e("google", "구글 토큰 등록 실패")
+                                }
+                            }
+                        } else {
+                            Log.d("google", resp.toString())
+                            Log.d("google", "구글 토큰 가져오기 실패")
+                        }
+                    }
+                }
 
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {

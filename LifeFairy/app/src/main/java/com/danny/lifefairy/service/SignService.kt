@@ -66,6 +66,15 @@ interface SignService {
     fun exchange_kakao_token(
     ): Call<TokenResult>
 
+    @POST("/api/users/google")
+    fun exchange_google_token(
+    ): Call<TokenResult>
+
+    @POST("/token")
+    fun google_access_token(
+        @Body jsonparams: PostGoogleModel
+    ) : Call<GoogleData>
+
     companion object { // static 처럼 공유객체로 사용가능함. 모든 인스턴스가 공유하는 객체로서 동작함.
         private const val BASE_URL = "http://133.186.251.93/"
 
@@ -91,6 +100,18 @@ interface SignService {
                 .client(OkHttpClient.Builder().addInterceptor { chain ->
                     val request = chain.request().newBuilder().addHeader("Authorization", "Bearer ${token}").build()
                     chain.proceed(request)}.build())
+                .build()
+                .create(SignService::class.java)
+        }
+
+        fun create2(): SignService {
+
+            val gson :Gson =   GsonBuilder().setLenient().create();
+
+            return Retrofit.Builder()
+                .baseUrl("https://oauth2.googleapis.com")
+//                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(SignService::class.java)
         }

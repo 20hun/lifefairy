@@ -168,26 +168,32 @@ class MainActivity : AppCompatActivity() {
 
                 val items = mutableListOf<SpaceId>()
 
-                for(i in 0..(resp2.body()?.data?.size?.minus(1)!!)){
-                    val name = resp2.body()?.data?.get(i)?.user?.name.toString()
-                    val emoji = resp2.body()?.data?.get(i)?.user?.emoji.toString()
+                if(resp2.body()?.data == null){
+                    Log.d("nudgeText", "space 없는 id / 나중에 혼자인 경우도 구현해야함")
+                } else {
 
-                    items.add(SpaceId(name, emoji))
-                }
-                Log.d("nudgeText", items.toString())
-                Log.d("nudgeText", resp2.body()?.data?.size.toString())
+                    for (i in 0..(resp2.body()?.data?.size?.minus(1)!!)) {
+                        val name = resp2.body()?.data?.get(i)?.user?.name.toString()
+                        val emoji = resp2.body()?.data?.get(i)?.user?.emoji.toString()
 
-                val rv = binding.mainTestRV
-                val rvAdapter= RVMainAdapter(items)
-                // Only the original thread that created a view hierarchy can touch its views 에러 시 사용
-                runOnUiThread {
-                    rv.adapter = rvAdapter
-                    rv.layoutManager = LinearLayoutManager(this)
-                }
+                        items.add(SpaceId(name, emoji))
+                    }
+                    Log.d("nudgeText", items.toString())
+                    Log.d("nudgeText", resp2.body()?.data?.size.toString())
 
-                rvAdapter.itemClick = object : RVMainAdapter.ItemClick {
-                    override fun onClick(view : View, position : Int) {
-                        Toast.makeText(baseContext, items[position].name, Toast.LENGTH_SHORT).show()
+                    val rv = binding.mainTestRV
+                    val rvAdapter = RVMainAdapter(items)
+                    // Only the original thread that created a view hierarchy can touch its views 에러 시 사용
+                    runOnUiThread {
+                        rv.adapter = rvAdapter
+                        rv.layoutManager = LinearLayoutManager(this)
+                    }
+
+                    rvAdapter.itemClick = object : RVMainAdapter.ItemClick {
+                        override fun onClick(view: View, position: Int) {
+                            Toast.makeText(baseContext, items[position].name, Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
                 }
             } else {

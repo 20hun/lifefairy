@@ -1,9 +1,6 @@
 package com.danny.lifefairy.form
 
-import com.google.gson.Gson
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 data class HTTP_GET_Model(
     var something : String? =null ,
@@ -41,6 +38,14 @@ data class PostLoginModel(
     var password : String?=null
 )
 
+data class PostGoogleModel(
+    val grant_type: String?=null,
+    val client_id: String?=null,
+    val client_secret: String?=null,
+    val redirect_uri: String?=null,
+    val code: String?=null,
+)
+
 data class PostModel(
     var email : String? =null ,
     var password : String?=null,
@@ -60,6 +65,10 @@ data class TokenResult(
     var refresh_token: String?=null,
     var userId : Int?=null,
     var name : String?=null
+)
+
+data class GoogleData(
+    val access_token: String?=null
 )
 
 data class PostGetGo(

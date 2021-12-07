@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">LifeFairy</string>
-    <string name="kakao_app_key">d06ed40143902b1f05df2736de439a7e</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="msg_token_fmt" translatable="false">토큰 : %s</string>
-</resources>
