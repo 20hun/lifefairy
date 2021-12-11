@@ -14,6 +14,9 @@
         android:theme="@style/Theme.LifeFairy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".mypage.MyPageActivity"
+            android:exported="true" />
+        <activity
             android:name=".auth.LoginActivity"
             android:exported="true" />
         <activity
@@ -52,6 +55,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
         <service
             android:name=".fcm.FirebaseService"
             android:exported="false">
@@ -60,6 +64,5 @@
             </intent-filter>
         </service>
     </application>
-
 
 </manifest>

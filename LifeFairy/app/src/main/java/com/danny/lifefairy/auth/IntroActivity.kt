@@ -39,6 +39,7 @@ class IntroActivity : AppCompatActivity() {
 
     private var introBinding : ActivityIntroBinding? = null
     private val binding get() = introBinding!!
+    private var spaceCheck = false
 
     companion object {
         private const val TAG = "IntroActivity"
@@ -69,19 +70,6 @@ class IntroActivity : AppCompatActivity() {
 
         binding.googleLoginButton.setOnClickListener {
             signIn()
-        }
-
-        // 로그인 정보 확인 카카오
-        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-            if (error != null) {
-                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
-            }
-            else if (tokenInfo != null) {
-                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
-            }
         }
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
@@ -126,9 +114,21 @@ class IntroActivity : AppCompatActivity() {
                     if (resp.isSuccessful) {
                         GlobalApplication.prefs.setString("accessToken", resp.body()?.access_token.toString())
                         GlobalApplication.prefs.setString("refreshToken", resp.body()?.refresh_token.toString())
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                        finish()
+
+                        thread {
+                            val api2 = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
+                            val resp2 = api2.get_space_check().execute()
+                            if (resp2.body()?.spaceYn.toString() == "Y"){
+                                spaceCheck = true
+                            }
+                            // space 가입 여부 확인해서 초대코드 화면으로
+                            var intent = Intent(this, MainActivity::class.java)
+                            if(!spaceCheck){
+                                intent = Intent(this, InviteActivity::class.java)
+                            }
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            finish()
+                        }
                     } else {
                         Log.d(TAG, "카카오 토큰 등록 실패")
                     }
@@ -221,9 +221,19 @@ class IntroActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                    finish()
+                    thread {
+                        val api = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
+                        val resp = api.get_space_check().execute()
+                        if (resp.body()?.spaceYn.toString() == "Y"){
+                            spaceCheck = true
+                        }
+                        var intent = Intent(this, MainActivity::class.java)
+                        if(!spaceCheck){
+                            intent = Intent(this, InviteActivity::class.java)
+                        }
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        finish()
+                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)

@@ -76,6 +76,10 @@ interface SignService {
     fun from_refresh_get_access(
     ): Call<TokenData>
 
+    @POST("/api/spaces/invite")
+    fun invite_code_create(
+    ): Call<InvitationData>
+
     @POST("/api/users/google")
     fun exchange_google_token(
     ): Call<TokenResult>

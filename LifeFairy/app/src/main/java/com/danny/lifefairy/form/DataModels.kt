@@ -80,6 +80,10 @@ data class TokenData(
     val message: String?=null,
 )
 
+data class InvitationData(
+    val invitationCode: String?=null
+)
+
 data class DevicePostData(
     val message: String?=null,
 )

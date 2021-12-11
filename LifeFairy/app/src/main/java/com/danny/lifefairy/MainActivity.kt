@@ -18,6 +18,7 @@ import com.danny.lifefairy.databinding.ActivityMainBinding
 import com.danny.lifefairy.form.PostDeviceTokenModel
 import com.danny.lifefairy.form.SpaceId
 import com.danny.lifefairy.mainrv.RVMainAdapter
+import com.danny.lifefairy.mypage.MyPageActivity
 import com.danny.lifefairy.service.SignService
 import com.google.android.datatransport.runtime.util.PriorityMapping.toInt
 import com.google.android.gms.common.server.converter.StringToIntConverter
@@ -47,6 +48,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.e(TAG, "access Token: " + GlobalApplication.prefs.getString("accessToken", ""))
+
+        binding.myPageBtn.setOnClickListener {
+            val intent = Intent(this, MyPageActivity::class.java)
+            startActivity(intent)
+        }
 
         // device 토큰 바로 등록
         thread {
