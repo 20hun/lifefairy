@@ -49,6 +49,12 @@ interface SignService {
         @Body jsonparams: PostLoginModel
     ): Call<TokenResult>
 
+    @POST("/api/notifications/device")
+    @Headers("content-type: application/json")
+    fun device_token_post(
+        @Body jsonparams: PostDeviceTokenModel
+    ): Call<DevicePostData>
+
     @GET("/api/spaces/check-space")
     fun get_space_check(
     ): Call<HTTP_GET_Model>
@@ -65,6 +71,10 @@ interface SignService {
     @POST("/api/users/kakao")
     fun exchange_kakao_token(
     ): Call<TokenResult>
+
+    @POST("/api/users/token")
+    fun from_refresh_get_access(
+    ): Call<TokenData>
 
     @POST("/api/users/google")
     fun exchange_google_token(

@@ -38,6 +38,10 @@ data class PostLoginModel(
     var password : String?=null
 )
 
+data class PostDeviceTokenModel(
+    var deviceToken : String? =null
+)
+
 data class PostGoogleModel(
     val grant_type: String?=null,
     val client_id: String?=null,
@@ -69,6 +73,15 @@ data class TokenResult(
 
 data class GoogleData(
     val access_token: String?=null
+)
+
+data class TokenData(
+    val access_token: String?=null,
+    val message: String?=null,
+)
+
+data class DevicePostData(
+    val message: String?=null,
 )
 
 data class PostGetGo(
