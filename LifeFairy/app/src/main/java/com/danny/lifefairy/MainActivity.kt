@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.danny.lifefairy.auth.GlobalApplication
 import com.danny.lifefairy.auth.IntroActivity
 import com.danny.lifefairy.databinding.ActivityMainBinding
+import com.danny.lifefairy.form.PostDeviceTokenModel
 import com.danny.lifefairy.form.SpaceId
 import com.danny.lifefairy.mainrv.RVMainAdapter
 import com.danny.lifefairy.service.SignService
@@ -39,13 +40,30 @@ class MainActivity : AppCompatActivity() {
     private var mainBinding : ActivityMainBinding? = null
     private val binding get() = mainBinding!!
 
+    private val TAG = "MainActivity"
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
+
+        // device 토큰 바로 등록
+        thread {
+            val data = PostDeviceTokenModel(
+                GlobalApplication.prefs.getString("deviceToken", "")
+            )
+
+            val api = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
+            val resp = api.device_token_post(data).execute()
+
+            val message = resp.body()?.message.toString()
+            if (message.contains("등록했습니다")){
+                Log.e(TAG, "device 토큰 등록 성공")
+            } else {
+                Log.e(TAG, "device 토큰 등록 실패")
+            }
+        }
 
         val now = System.currentTimeMillis()
         val now2 = LocalDate.now()

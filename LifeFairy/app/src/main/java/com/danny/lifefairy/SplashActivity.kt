@@ -78,25 +78,6 @@ class SplashActivity : AppCompatActivity() {
                     } else {
                         Log.e(TAG, "refresh 로 access token 가져오기 통신 실패 : 올바르지 않거나 만료된 refresh token")
                     }
-
-                    if (accessTokenCheck){
-                        // device 토큰 바로 등록
-                        thread {
-                            val data = PostDeviceTokenModel(
-                                GlobalApplication.prefs.getString("deviceToken", "")
-                            )
-
-                            val api = SignService.tokenRequest(GlobalApplication.prefs.getString("accessToken", ""))
-                            val resp = api.device_token_post(data).execute()
-
-                            val message = resp.body()?.message.toString()
-                            if (message.contains("등록했습니다")){
-                                Log.e(TAG, "device 토큰 등록 성공")
-                            } else {
-                                Log.e(TAG, "device 토큰 등록 실패")
-                            }
-                        }
-                    }
                 }
             }
         })

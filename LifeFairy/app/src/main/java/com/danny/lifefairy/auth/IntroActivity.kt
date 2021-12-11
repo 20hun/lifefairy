@@ -41,25 +41,16 @@ class IntroActivity : AppCompatActivity() {
     private val binding get() = introBinding!!
 
     companion object {
-        private const val TAG = "GoogleActivity"
+        private const val TAG = "IntroActivity"
         private const val RC_SIGN_IN = 9001
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_intro)
         introBinding = ActivityIntroBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-
-
-        // sharedpreferences 테스트
-        Log.e("device", GlobalApplication.prefs.getString("deviceToken", "ttttt"))
-        Log.e("device", GlobalApplication.prefs.getString("devsdf", "ssssss"))
-
-
 
         binding.emailLoginBtn.setOnClickListener {
             val intent = Intent(this, EmailActivity::class.java)
@@ -126,29 +117,26 @@ class IntroActivity : AppCompatActivity() {
                 }
             }
             else if (token != null) {
-                Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "카카오 로그인 성공")
                 // kakao access token
-                Log.d("kakaoToken", token.accessToken)
+                Log.d(TAG, "카카오 access token" + token.accessToken)
                 thread {
                     val api = SignService.tokenRequest(token.accessToken)
                     val resp = api.exchange_kakao_token().execute()
                     if (resp.isSuccessful) {
                         GlobalApplication.prefs.setString("accessToken", resp.body()?.access_token.toString())
+                        GlobalApplication.prefs.setString("refreshToken", resp.body()?.refresh_token.toString())
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         finish()
                     } else {
-                        Toast.makeText(this, "http exchange kakao 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                        Log.d(TAG, "카카오 토큰 등록 실패")
                     }
                 }
-
             }
         }
 
-
-        val kakao_login_button = findViewById<ImageButton>(R.id.kakao_login_button) // 로그인 버튼
-
-        kakao_login_button.setOnClickListener {
+        binding.kakaoLoginButton.setOnClickListener {
             if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
             }else{
@@ -184,13 +172,11 @@ class IntroActivity : AppCompatActivity() {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
-                Log.d(TAG, "firebaseAuthWithGoogle1:" + account.id)
-                Log.d(TAG, "firebaseAuthWithGoogle2:" + account.idToken)
-                Log.d(TAG, "firebaseAuthWithGoogle3:" + account.email)
-                Log.d(TAG, "firebaseAuthWithGoogle4:" + account.serverAuthCode)
+                Log.d(TAG, "firebaseAuthWithGoogle1:" + account.email)
+                Log.d(TAG, "firebaseAuthWithGoogle2:" + account.serverAuthCode)
 
-                val api3 = SignService.create2()
-                val data3 = PostGoogleModel(
+                val api = SignService.create2()
+                val data = PostGoogleModel(
                     "authorization_code",
                     "992018839527-1rte0l0d0mkcljrdurhd3ib6p0bkju1v.apps.googleusercontent.com",
                     getString(R.string.google_secret),
@@ -198,25 +184,23 @@ class IntroActivity : AppCompatActivity() {
                     account.serverAuthCode
                 )
                 thread {
-                    val resp = api3.google_access_token(data3).execute()
+                    val resp = api.google_access_token(data).execute()
                     CoroutineScope(Dispatchers.Main).launch {
                         if (resp.isSuccessful) {
-                            Log.d("google", resp.toString())
-                            Log.d("google", resp.body().toString())
                             val googleAT = resp.body()?.access_token.toString()
                             thread {
-                                val api4 = SignService.tokenRequest(googleAT)
-                                val resp4 = api4.exchange_google_token().execute()
-                                if (resp4.isSuccessful) {
-                                    GlobalApplication.prefs.setString("accessToken", resp4.body()?.access_token.toString())
-                                    Log.e("google", "구글 토큰 등록 성공")
+                                val api2 = SignService.tokenRequest(googleAT)
+                                val resp2 = api2.exchange_google_token().execute()
+                                if (resp2.isSuccessful) {
+                                    GlobalApplication.prefs.setString("accessToken", resp2.body()?.access_token.toString())
+                                    GlobalApplication.prefs.setString("refreshToken", resp2.body()?.refresh_token.toString())
+                                    Log.e(TAG, "구글 토큰 등록 성공")
                                 } else {
-                                    Log.e("google", "구글 토큰 등록 실패")
+                                    Log.e(TAG, "구글 토큰 등록 실패")
                                 }
                             }
                         } else {
-                            Log.d("google", resp.toString())
-                            Log.d("google", "구글 토큰 가져오기 실패")
+                            Log.d(TAG, "구글 토큰 가져오기 실패")
                         }
                     }
                 }
@@ -236,12 +220,6 @@ class IntroActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
-                    // updateUI(user)
-
-//                    val acct = GoogleSignIn.getLastSignedInAccount(this)
-//                    Log.d(TAG, "firebaseAuthWithGoogle7:" + acct?.serverAuthCode)
-//                    Log.d(TAG, "firebaseAuthWithGoogle8:" + acct?.email)
 
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
