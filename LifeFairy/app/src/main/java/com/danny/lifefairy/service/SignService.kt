@@ -55,6 +55,16 @@ interface SignService {
         @Body jsonparams: PostDeviceTokenModel
     ): Call<DevicePostData>
 
+    @POST("/api/spaces/check-invitationcode")
+    fun check_invitation_code(
+        @Body jsonparams: InvitationData
+    ): Call<PostInvitationCheck>
+
+    @POST("/api/spaces/participate")
+    fun join_space(
+        @Body jsonparams: JoinSpaceData
+    ): Call<DevicePostData>
+
     @GET("/api/spaces/check-space")
     fun get_space_check(
     ): Call<HTTP_GET_Model>

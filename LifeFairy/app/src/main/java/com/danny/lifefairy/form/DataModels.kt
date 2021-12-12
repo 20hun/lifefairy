@@ -42,6 +42,13 @@ data class PostDeviceTokenModel(
     var deviceToken : String? =null
 )
 
+data class PostInvitationCheck(
+    val spaceId: Int?=null,
+    val inviterName: String?=null,
+    val inviteEmoji: String?=null,
+    val errorCode: Int?=null
+)
+
 data class PostGoogleModel(
     val grant_type: String?=null,
     val client_id: String?=null,
@@ -82,6 +89,11 @@ data class TokenData(
 
 data class InvitationData(
     val invitationCode: String?=null
+)
+
+data class JoinSpaceData(
+    val spaceId: String?=null,
+    val invitationCode: String?=null,
 )
 
 data class DevicePostData(
