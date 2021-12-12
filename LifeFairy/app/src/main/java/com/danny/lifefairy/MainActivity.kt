@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.e(TAG, "access Token: " + GlobalApplication.prefs.getString("accessToken", ""))
+        Log.e(TAG, "accessToken: " + GlobalApplication.prefs.getString("accessToken", ""))
 
         binding.myPageBtn.setOnClickListener {
             val intent = Intent(this, MyPageActivity::class.java)
