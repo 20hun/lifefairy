@@ -34,6 +34,10 @@
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/fragment_third_main.xml" value="0.209375" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/invite_dialog.xml" value="0.14010416666666667" />
         <entry key="..\:/AndroidStudioProjects/LifeFairy/app/src/main/res/layout/mianrv_item.xml" value="0.16576086956521738" />
+        <entry key="app/src/main/res/layout/activity_email.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/activity_intro.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2" />
       </map>
     </option>
   </component>

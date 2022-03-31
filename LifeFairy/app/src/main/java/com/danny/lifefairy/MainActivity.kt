@@ -229,6 +229,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
 //        val keyHash = Utility.getKeyHash(this)
 //        Log.d("KEY_HASH", keyHash)
 //        val kakao_logout_button = findViewById<Button>(R.id.kakao_logout_button) // 로그인 버튼

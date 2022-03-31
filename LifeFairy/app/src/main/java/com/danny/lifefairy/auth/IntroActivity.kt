@@ -137,11 +137,17 @@ class IntroActivity : AppCompatActivity() {
         }
 
         binding.kakaoLoginButton.setOnClickListener {
+            Log.e("aaaaaa", "ddddd")
             if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
+                Log.e("aaaaaa", "ddddd1")
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+                Log.e("aaaaaa", "ddddd2")
             }else{
+                Log.e("aaaaaa", "ddddd3")
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+                Log.e("aaaaaa", "ddddd4")
             }
+            Log.e("aaaaaa", "ddddd5")
         }
     }
 

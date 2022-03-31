@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import com.danny.lifefairy.MainActivity
 import com.danny.lifefairy.R
 import com.danny.lifefairy.databinding.ActivityLoginBinding
 import com.danny.lifefairy.form.PostEmailCheckModel
@@ -26,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var questionPassword : TextView
     var checkNextPage = false
+
+    private var spaceCheck = false
 
     val api = SignService.create()
 
@@ -81,12 +84,19 @@ class LoginActivity : AppCompatActivity() {
                             Log.d("log223", resp.body().toString())
                             val api2 = SignService.tokenRequest(resp.body()?.access_token.toString())
                             GlobalApplication.prefs.setString("accessToken", resp.body()?.access_token.toString())
+                            GlobalApplication.prefs.setString("refreshToken", resp.body()?.refresh_token.toString())
                             thread {
                                 val tf = api2.get_space_check().execute()
+                                if (tf.body()?.spaceYn.toString() == "Y") {
+                                    spaceCheck = true
+                                }
                                 Log.d("log223", tf.body().toString())
+                                var intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                if(!spaceCheck){
+                                    intent = Intent(this@LoginActivity, InviteActivity::class.java)
+                                }
+                                startActivity(intent)
                             }
-                            val intent = Intent(this@LoginActivity, InviteActivity::class.java)
-                            startActivity(intent)
                         } else {
                             Log.d("log223", resp.toString())
                             Log.d("log223", "로그인 실패")
